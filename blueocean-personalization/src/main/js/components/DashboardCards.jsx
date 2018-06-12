@@ -92,4 +92,3 @@ DashboardCards.propTypes = {
     router: PropTypes.object,
 };
 
-export default DashboardCards;

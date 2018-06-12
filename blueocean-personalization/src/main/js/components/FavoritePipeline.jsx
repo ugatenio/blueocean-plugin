@@ -35,6 +35,7 @@ export class FavoritePipeline extends Component {
     }
 }
 
+
 FavoritePipeline.propTypes = {
     className: PropTypes.string,
     pipeline: PropTypes.object,
