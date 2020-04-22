@@ -76,7 +76,7 @@ node() {
 
           stage('Building BlueOcean') {
             timeout(time: 90, unit: 'MINUTES') {
-              sh "mvn clean install -V -B -DcleanNode -B -Dmaven.test.failure.ignore -s settings.xml -Dmaven.artifact.threads=30"
+              sh "mvn clean install -V -B -DcleanNode -B -Dmaven.test.failure.ignore -s settings.xml -Dmaven.artifact.threads=30 -Dmaven.repo.local=${env.WORKSPACE}/.m2"
             }
 
             junit '**/target/surefire-reports/TEST-*.xml'
@@ -91,7 +91,7 @@ node() {
             stage("ATH - Jenkins ${version}") {
               timeout(time: 90, unit: 'MINUTES') {
                 dir('acceptance-tests') {
-                  sh "bash -x ./run.sh -v=${version} --host=${ip} --no-selenium --settings='-s ${env.WORKSPACE}/settings.xml'"
+                  sh "bash -x ./run.sh -v=${version} --host=${ip} --no-selenium --settings='-s ${env.WORKSPACE}/settings.xml -Dmaven.repo.local=${env.WORKSPACE}/.m2'"
                   junit '**/target/surefire-reports/*.xml'
                   archive '**/target/screenshots/**/*'
                 }
