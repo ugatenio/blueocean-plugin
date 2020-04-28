@@ -8,8 +8,6 @@ ARG GID=1000
 
 USER root
 
-RUN apt-get update
-
 #========================
 # Miscellaneous packages
 #========================
